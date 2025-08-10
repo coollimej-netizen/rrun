@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>초등학교 3학년 1학기 길이 문제</title>
+<style>
+  body { font-family: 'Arial', sans-serif; max-width: 600px; margin: 20px auto; }
+  h1 { text-align: center; }
+  .question { margin-bottom: 15px; }
+  input { width: 100px; }
+  button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+  #result { margin-top: 20px; font-weight: bold; }
+</style>
+</head>
+<body>
+  <h1>길이 문제 풀기 (초등 3학년 1학기)</h1>
+  <form id="quizForm">
+    <div class="question">
+      <label>1. 1미터는 몇 센티미터인가요? </label><br />
+      <input type="number" name="q1" required />
+    </div>
+    <div class="question">
+      <label>2. 250센티미터는 몇 미터인가요? (소수점 첫째 자리까지)</label><br />
+      <input type="number" step="0.1" name="q2" required />
+    </div>
+    <div class="question">
+      <label>3. 3미터 50센티미터는 센티미터로 몇 센티미터인가요?</label><br />
+      <input type="number" name="q3" required />
+    </div>
+    <div class="question">
+      <label>4. 5000밀리미터는 몇 미터인가요?</label><br />
+      <input type="number" step="0.01" name="q4" required />
+    </div>
+    <div class="question">
+      <label>5. 1미터 20센티미터는 몇 센티미터인가요?</label><br />
+      <input type="number" name="q5" required />
+    </div>
+    <button type="submit">제출하기</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const answers = {
+        q1: 100,
+        q2: 2.5,
+        q3: 350,
+        q4: 5,
+        q5: 120
+      };
+
+      let score = 0;
+      for (const key in answers) {
+        const userAnswer = parseFloat(this.elements[key].value);
+        if (Math.abs(userAnswer - answers[key]) < 0.01) {
+          score++;
+        }
+      }
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = `총 ${score}문제 맞았습니다!`;
+    });
+  </script>
+</body>
+</html>
